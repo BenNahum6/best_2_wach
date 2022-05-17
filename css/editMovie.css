@@ -1,0 +1,11 @@
+.title{
+    text-align: center;
+    font-size: 50px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+#submit_button{
+    border-radius: 20px;
+}
+
+

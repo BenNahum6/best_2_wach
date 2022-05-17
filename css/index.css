@@ -1,0 +1,27 @@
+.title{
+    text-align: center;
+    font-size: 50px;
+    text-shadow: 2px 2px 4px #000000;
+
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    border-style: double;
+}
+
+.grid{
+    border-style: double;
+}
+
+#add_movie1{
+    border-radius: 20px;
+}
+#add_movie2{
+    border-radius: 20px;
+}
+#submit_button{
+    border-radius: 20px;
+}
+
