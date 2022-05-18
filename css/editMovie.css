@@ -8,4 +8,17 @@
     border-radius: 20px;
 }
 
+#id{
+    cursor: not-allowed;
+}
+
+button:hover{
+    background-color: #3498db;
+}
+
+#return_button{
+    margin-left: 91%;
+    border-radius: 20px;
+}
+
 

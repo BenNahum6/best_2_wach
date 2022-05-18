@@ -6,9 +6,9 @@ const  port = 3001;
 
 
 app.use( express.static(path.join(__dirname,'/')));
-app.use("/editMovie/:movieID", express.static(path.join(__dirname,'/ui/editMovie.html')));
-app.use("/AddActorToMovie/:movieID", express.static(path.join(__dirname,'/ui/addActor.html')));
-app.use("/showActors/:movieID", express.static(path.join(__dirname,'/ui/showActors.html')));
+app.use("/editMovie/:movieID", express.static(path.join(__dirname,'/html/editMovie.html')));
+app.use("/AddActorToMovie/:movieID", express.static(path.join(__dirname,'/html/addActor.html')));
+app.use("/showActors/:movieID", express.static(path.join(__dirname,'/html/showActors.html')));
 
 
 app.use(express.json());

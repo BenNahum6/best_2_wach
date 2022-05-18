@@ -96,7 +96,7 @@ function updateParameters(data, req){
 
 /*checks the name of the actor received. return true if The input is correct*/
 function checkActorName(req){
-    let name = req.body.actors.name;
+    let name = req.body.name;
     for (let i=0; i<name.length; i++){//check actor name consists of letters and space only.
         let num = name.codePointAt(i);
         if (num !== 32 && num < 65 || (90 < num && num < 97) || 122 < num){
@@ -107,16 +107,28 @@ function checkActorName(req){
 }
 
 /*creates a new actor and insert the new actor to the movie. return json object.*/
-function addActorToMovie(data, req, i){
+function addActorToMovie(data, req){
     let id = req.body.id;
-    let actor = req.body.actors;
-    let newActor = "actor_" + i + "_name";
-    data[id].actors[newActor] = {};
-    data[id].actors[newActor].name = actor.name;
-    data[id].actors[newActor].picture = actor.picture;
-    data[id].actors[newActor].site = actor.site;
+    let actor = req.body;
+    data[id].actors[req.body.name] = {};
+    data[id].actors[req.body.name].name = actor.name;
+    data[id].actors[req.body.name].picture = actor.picture;
+    data[id].actors[req.body.name].site = actor.site;
 
     return data;
+}
+
+/*checking that the address is correct*/
+function isValidHttpUrl(string) {
+    let url;
+
+    try {
+        url = new URL(string);
+    } catch (_) {
+        return false;
+    }
+
+    return true;
 }
 
 /*equation of dates and returns true if d1 is less than d2*/
@@ -262,31 +274,18 @@ function checkDetails(req){
     }
 
     let date = req.body.date;// dd/mm/yyyy
-    if(date.length < 10 || 10 < date.length){
+
+    if(isNaN(Date.parse(convertToDateObject(date)))){//
         console.log("The date is incorrect.");
         return false;
     }
-    for (let i=0; i<date.length; i++){//check date consists numbers and '-' only.
-        let num = date.codePointAt(i);
-        if (num !== 45 && !(47 < num && num < 58)){
-            console.log("The date is incorrect.");
-            return false;
-        }
-        if(i===0 || i===1 || i===3 || i===4 || i===6 || i===8 || i===7 || i===9){
-            if(!(47 < num && num < 58)){
-                console.log("The date is incorrect.");
-                return false;
-            }
-        }
-        else{
-            if(num !== 45){
-                console.log("The date is incorrect.");
-                return false;
-            }
-        }
-    }
 
     return true;
+}
+
+function convertToDateObject(date) {
+    date = date.split("-");
+    return date[2] + "-" + date[1] + "-" + date[0];
 }
 
 module.exports = {
@@ -363,19 +362,24 @@ module.exports = {
                 else if (!checkActorName(req)){
                     res.status(400).send("The actor name can only contain letters. ");
                 }
+                else if(!isValidHttpUrl(req.body.picture)){
+                    res.status(400).send("The picture address wrong.");
+                }
+                else if(!isValidHttpUrl(req.body.site)){
+                    res.status(400).send("The site address wrong.");
+                }
                 else {
-                    let numOfActors = Object.keys(data[req.body.id].actors).length + 1;
-                        for (let i = 1; i < numOfActors; i++) {
-                            let x = "actor_" + i + "_name";
-                            if (data[req.body.id].actors[x].name === req.body.actors.name) {
-                                res.status(400).send("The actor '" + req.body.actors.name + "' is already appearing in the movie.");
-                                return;
-                            }
-                        }
-                        let updateData = addActorToMovie(data, req, numOfActors);
-                        writeFile(JSON.stringify(updateData, null, 2), () => {
-                            res.status(200).send('add the actor ' + req.body.actors.name + ' to movie ' + data[req.body.id].name + ' update.');
-                        });
+
+                    if (typeof(data[req.body.id].actors[req.body.name]) !== 'undefined'){
+                        res.status(400).send("The actor '" + req.body.name + "' is already appearing in the movie.");
+                        return;
+                    }
+                    console.log(data[req.body.id].actors[req.body.name]);
+
+                    let updateData = addActorToMovie(data, req);
+                    writeFile(JSON.stringify(updateData, null, 2), () => {
+                        res.status(200).send('add the actor ' + req.body.name + ' to movie ' + data[req.body.id].name + ' update.');
+                    });
                 }
 
             },
@@ -447,23 +451,17 @@ module.exports = {
                     res.status(400).send("The actor name can only contain normal characters and space.");
                 }
                 else {
-                    let i = 1;
-                    try {
-                        for (; i < 10000; i++) {
-                            let x = "actor_" + i + "_name";
-                            console.log(x + " = " + parsData[req.params.movieID].actors[x].name);
-                            if (parsData[req.params.movieID].actors[x].name === req.params.actorName) {
-                                delete parsData[req.params.movieID].actors[x];
-                                writeFile(JSON.stringify(parsData, null, 2), () => {
-                                    res.status(200).send('movie deleted successfully.');
-                                });
-                                break;
-                            }
-                        }
+                    if(typeof(parsData[req.params.movieID].actors[req.params.actorName]) !== 'undefined'){
+                        delete parsData[req.params.movieID].actors[req.params.actorName];
+                        writeFile(JSON.stringify(parsData, null, 2), () => {
+                            res.status(200).send('movie deleted successfully.');
+                        });
                     }
-                    catch (error){
+                    else{
                         res.status(400).send("The actor '" + req.params.actorName + "' not appearing in the movie.");
                     }
+
+
                 }
             }
         });

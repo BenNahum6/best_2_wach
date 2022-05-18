@@ -17,3 +17,22 @@
 #submit_button{
     border-radius: 20px;
 }
+
+a{
+    color: black;
+}
+
+button:hover{
+    background-color: #3498db;
+}
+
+#return_button{
+    margin-left: 91%;
+    border-radius: 20px;
+}
+
+.delete{
+    margin-top: 15%;
+    margin-left: 27%;
+    border-radius: 20px
+}

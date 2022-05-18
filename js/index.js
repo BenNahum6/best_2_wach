@@ -72,8 +72,8 @@ $(document).ready(function(){
         }else {
             $("#series").show();
         }
-    })
-
+    });
+    $(".loader").hide();
     $("input[type=number]").change(function () {
         if (this.value < 1){
             this.value = 1;
@@ -81,7 +81,7 @@ $(document).ready(function(){
         if (this.value > 5){
             this.value = 5;
         }
-    })
+    });
 
     function padTo2Digits(num) {
         return num.toString().padStart(2, '0');
@@ -107,7 +107,7 @@ $(document).ready(function(){
 
 
     function injectToTable() {
-        let content = "<div class='grid'>Picture</div><div class='grid'>ID</div><div class='grid' id='nameSort'>Name</div><div class='grid' id='rateSort'>Rating</div><div class='grid' id='dateSort'>Date</div><div class='grid'>Action</div>"
+        let content = "<div class='grid'>Picture</div><div class='grid'>ID</div><div class='grid' id='nameSort'>Name  <i class='fas fa-angle-double-up'></i><i class='fas fa-angle-double-down'></i></div><div class='grid' id='rateSort'>Rating  <i class='fas fa-angle-double-up'></i><i class='fas fa-angle-double-down'></i></div><div class='grid' id='dateSort'>Date  <i class='fas fa-angle-double-up'></i><i class='fas fa-angle-double-down'></i></div><div class='grid'>Action</div>"
         dataList.forEach(function (element, index) {
             let id = element.id;
             let name = element.name;
@@ -120,10 +120,10 @@ $(document).ready(function(){
                 "<div class='grid'>" + rating + "</div>" +
                 "<div class='grid'>" + date + "</div>" +
                 "<div class='grid'>" +
-                "<button class='delete' style='margin-left: 22%' name='" + element.id + "'>Delete movie</button><br><br>" +
-                "<button class='edit' style='margin-left: 22%' name='" + element.id + "' hr>Edit movie</button><br><br>" +
-                "<button class='addActor' style='margin-left: 22%' name='" + element.id + "'>Add actor</button><br><br>" +
-                "<button class='showActors' style='margin-left: 22%' name='" + element.id + "'>Show actors</button><br><br>" +
+                "<button class='delete' name='" + element.id + "'>Delete movie</button><br><br>" +
+                "<button class='edit' name='" + element.id + "' hr>Edit movie</button><br><br>" +
+                "<button class='addActor' name='" + element.id + "'>Add actor</button><br><br>" +
+                "<button class='showActors' name='" + element.id + "'>Show actors</button><br><br>" +
                 "</div>";
         })
 
@@ -159,7 +159,15 @@ $(document).ready(function(){
             window.location="/AddActorToMovie/" + this.name;
         });
         $(".showActors").click(function () {
-            window.location="/showActors/" + this.name;
+
+
+            $(".loader").show();
+            let nameToPass = this.name;
+            setTimeout(function() {
+                //your code to be executed after 1 second
+                $(".loader").hide();
+                window.location="/showActors/" + nameToPass;
+            }, 2000);
         });
 
     }
@@ -254,7 +262,6 @@ $(document).ready(function(){
             for (let i = 0; i < series_details.length; i++) {//check series_details digits only.
                 let num = series_details.charAt(i);
                 if (num !== ' ' && (num < '0' || '9' < num)) {
-                    alert(num);
                     alert("series_details can only contain numbers");
                     return false;
                 }

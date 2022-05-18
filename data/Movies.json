@@ -13,7 +13,7 @@
       13
     ],
     "actors": {
-      "actor_1_name": {
+      "dan": {
         "name": "dan",
         "picture": "url",
         "site": "url"
@@ -24,30 +24,24 @@
     "id": "3",
     "name": "the godfather",
     "picture": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
-    "director": "b.name",
-    "date": "01-10-1972",
-    "rating": 5,
+    "director": "b name",
+    "date": "01-11-1972",
+    "rating": "5",
     "isSeries": true,
     "series_details": [
       10,
       12,
       13
     ],
-    "actors": {
-      "actor_1_name": {
-        "name": "didi",
-        "picture": "url",
-        "site": "url"
-      }
-    }
+    "actors": {}
   },
   "4": {
     "id": "4",
-    "name": "games of thrones",
+    "name": "game of thrones",
     "picture": "https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg",
     "director": "Ben Nahum",
-    "date": "01-12-2011",
-    "rating": "2",
+    "date": "01-07-2012",
+    "rating": "1",
     "isSeries": true,
     "series_details": [
       10,
@@ -60,20 +54,10 @@
       6
     ],
     "actors": {
-      "actor_1_name": {
-        "name": "asdas",
-        "picture": "url",
-        "site": "url"
-      },
-      "actor_3_name": {
-        "name": "brnhamin",
-        "picture": "url",
-        "site": "url"
-      },
-      "actor_4_name": {
-        "name": "ido",
-        "picture": "url",
-        "site": "url"
+      "elad casel": {
+        "name": "elad casel",
+        "picture": "https://hakita.co.il/upload/avatars/4496c1b3e70fc808cff109aceae9bd30.png",
+        "site": "https://hakita.co.il/profile/index.html?user=cassel"
       }
     }
   },
@@ -81,27 +65,11 @@
     "id": "SpiderMan7",
     "name": "SpiderMan No Way Home",
     "picture": "https://upload.wikimedia.org/wikipedia/he/8/82/Spider-Man_No_Way_Home.jpg",
-    "director": "s.name",
-    "date": "17-12-2021",
-    "rating": 5,
+    "director": "s name",
+    "date": "17-09-2022",
+    "rating": "5",
     "isSeries": false,
-    "series_details": [
-      10,
-      12,
-      13
-    ],
-    "actors": {
-      "actor_1_name": {
-        "name": "toby",
-        "picture": "url",
-        "site": "url"
-      },
-      "actor_2_name": {
-        "name": "toby",
-        "picture": "url",
-        "site": "url"
-      }
-    }
+    "actors": {}
   },
   "Breaking 2 Bad": {
     "id": "Breaking Bad",
@@ -120,15 +88,21 @@
     ],
     "actors": {}
   },
-  "batman2": {
-    "id": "batman",
-    "name": "asdasdasd",
+  "123asd": {
+    "id": "123asd",
+    "name": "batman",
     "picture": "https://upload.wikimedia.org/wikipedia/he/thumb/e/e4/The_Batman_Official_Poster.jpg/800px-The_Batman_Official_Poster.jpg",
     "director": "xddsgsdg",
     "date": "10-04-2020",
     "rating": "5",
     "isSeries": false,
-    "actors": {}
+    "actors": {
+      "batel": {
+        "name": "batel",
+        "picture": "https://cdn.discordapp.com/attachments/774916228044816384/974240059001823232/costume.jpg",
+        "site": "https://cdn.discordapp.com/attachments/774916228044816384/974240059001823232/costume.jpg"
+      }
+    }
   },
   "AazZ": {
     "id": "AazZ",

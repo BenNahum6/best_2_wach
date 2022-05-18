@@ -1,13 +1,28 @@
 $(document).ready(function(){
     let urlPars = window.location.href.split('/');
     let movieId = decodeURI(urlPars[4]);
-    console.log("id is: " + movieId);
+    let movieData;
+    getMoviesData();
+    $(".title").text("add actor to the movie " + movieData.name);
 
+    $("button").click(function(){
+        let clickOn = $(this).attr("id");
+
+        if (clickOn === "return_button")
+            location.href = "/"; //closes the screen and returns to the main screen.
+        else
+            validation();
+    });
+
+    $("#return_button").click(function(){
+        location.href = "/"; //closes the screen and returns to the main screen.
+    });
 
     function validation() {
+        let id = movieId;
         let name = $('#name').val();
         let picture = $('#picture').val();
-        let site = $('#site').val();
+        let site = $('#fanSite').val();
 
 
         if(name.length < 1){
@@ -22,6 +37,7 @@ $(document).ready(function(){
             }
         }
 
+
         if (!isValidHttpUrl(picture)){
             alert('picture url is incorrect.');
             return false;
@@ -33,12 +49,14 @@ $(document).ready(function(){
         }
 
 
+
         //send PUT
         $.ajax({
             type: 'PUT', //http rec
             url: '/movies/AddActorToMovie',//
             contentType: 'application/json',
             data: JSON.stringify({
+                "id": id,
                 "name": name,
                 "picture": picture,
                 "site": site,
@@ -51,9 +69,42 @@ $(document).ready(function(){
 
             },
             error: function (jqxhr, textStatus, err) {
+                alert(jqxhr.responseText);
+                console.log(jqxhr.responseText);
+            },
+        });
+    }
+
+    /*GET - get all movie*/
+    function getMoviesData(){
+        $.ajax({
+            type: 'GET', //http rec
+            url: '/movies',//
+            contentType: 'application/json',
+            processData: false,
+            encode: true,
+            async: false,
+            success: function (data, textStatus, jqxhr){
+                movieData = data.find(function (element) {
+                    return element.id === movieId;
+                });
+            },
+            error: function (jqxhr, textStatus, err) {
                 console.log(err);
             },
         });
+    }
+
+    function isValidHttpUrl(string) {
+        let url;
+
+        try {
+            url = new URL(string);
+        } catch (_) {
+            return false;
+        }
+
+        return true;
     }
 
 });

@@ -8,3 +8,12 @@
 #submit_button{
     border-radius: 20px;
 }
+
+button:hover{
+    background-color: #3498db;
+}
+
+#return_button{
+    margin-left: 91%;
+    border-radius: 20px;
+}

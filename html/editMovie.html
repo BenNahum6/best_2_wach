@@ -10,23 +10,28 @@
 </head>
 <body>
 
-<div class="title">Movie details update</div>
+<div class="title"></div><br><br>
 
 <div class="parameters">
     id: <input type="text" id="id" disabled> <br><br>
     name: <input type="text" id="name"> <br><br>
     picture: <input type="text" id="picture"> <br><br>
+    <img id="movie_img" src="" width="150px"><br><br>
     director: <input type="text" id="director"> <br><br>
     date: <input type="date" id="date"> <br><br>
     rating: <input type="number" step="1" placeholder="1 - 5" min="1" max="5" id="rating"> <br><br>
     <form id="type">
         Type:<br>
         <input type="radio" name="isSeries" checked="true" value="movie">    Movie<br>
-        <input type="radio" name="isSeries" value="series">  Series<br>
+        <input type="radio" name="isSeries" value="series">  Series<br><br>
     </form>
     <div hidden id="series">Series details: <input type="text" id="series_details" hid> <br></div>
     <button id="submit_button">submit</button>
 </div>
+
+<div class="loader"></div><br>
+
+<button id="return_button">return to movie list</button>
 
 </body>
 </html>

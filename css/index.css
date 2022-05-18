@@ -25,3 +25,57 @@
     border-radius: 20px;
 }
 
+#dateSort{
+    cursor: pointer;
+}
+#rateSort{
+    cursor: pointer;
+}
+#nameSort{
+    cursor: pointer;
+}
+
+.delete{
+    margin-top: 15%;
+    margin-left: 27%;
+    border-radius: 20px
+}
+.edit{
+    margin-left: 27%;
+    border-radius: 20px
+}
+.addActor{
+    margin-left: 27%;
+    border-radius: 20px
+}
+.showActors{
+    margin-left: 27%;
+    border-radius: 20px
+}
+button:hover{
+    background-color: #3498db;
+}
+
+.loader {
+    left: 45%;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    z-index: 99 !important;
+    top: 50%;
+    position: absolute;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
