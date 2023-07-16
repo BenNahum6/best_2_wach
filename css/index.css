@@ -1,3 +1,4 @@
+
 .title{
     text-align: center;
     font-size: 50px;
@@ -79,3 +80,37 @@ button:hover{
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.navigation_bar {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-bar {
+    border-radius: 25px;
+    height: fit-content;
+    display: inline-flex;
+    background-color: #181414;
+    /*background-color: rgba(0, 0, 0, .4);*/
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    align-items: center;
+    padding: 0 25px;
+    margin: 0 0 0 0;
+}
+
+li {
+    list-style: none;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 12px 16px;
+    margin: 0 8px;
+    position: relative;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+
+
+

@@ -1,11 +1,18 @@
 const fs = require("fs");
 const dataPath = './data/Movies.json';
+const nameToImdb = require("name-to-imdb"); //api to imdb
 
-const readFile =(callback, returnJson = false, filepath = dataPath, encoding = 'utf8') => {
+const readFile = (callback, returnJson = false, filepath = dataPath, encoding = 'utf8') => {
     fs.readFile(filepath,encoding,(err, data) => {
         if (err){
             console.log(err);
         }
+
+        if(Object.entries(data).length === 0){
+            console.log("10");
+            data = "{}";
+        }
+
         callback(returnJson ? JSON.parse(data) : data);
     });
 };
@@ -38,13 +45,14 @@ function checkValid(req){
 /*checks the name of the actor received in the URL. return true if The input is correct*/
 function checkActorNameUrl(req){
     let name = req.params.actorName;
-    for (let i=0; i<name.length; i++){//check name consists numbers and letters only.
-        let num = name.codePointAt(i);
-        if (num < 65 || (90 < num && num < 97) || 122 < num){
-            return false;
-        }
-    }
-    return true;
+    // for (let i=0; i<name.length; i++){//check name consists numbers and letters only.
+    //     let num = name.codePointAt(i);
+    //     if (num < 65 || (90 < num && num < 97) || 122 < num){
+    //         return false;
+    //     }
+    // }
+    // return true;
+    return anser = /^[A-Za-z\s]*$/.test(name);
 }
 
 /*update specific parameters. return json object*/
@@ -338,7 +346,7 @@ module.exports = {
     /*PUT - update the details of the movie without the movie ID and actors names*/
     updateMovie: function (req, res) {
         readFile(data => {
-                // console.log(req.body);
+                console.log(req.body.id);
                 if (!data[req.body.id]) {//checks if id not exists in json file.
                     res.status(400).send("movie with id " + req.body.id + " not exists!");
                 }
@@ -441,9 +449,11 @@ module.exports = {
             if (err) {
                 console.log(err);
                 res.sendStatus(500);
-            } else {
+            }
+            else {
                 console.log(req.params);
                 let parsData = JSON.parse(data);
+
                 if (!parsData[req.params.movieID]) { //checks if id not exists in json file.
                     res.status(400).send("movie or tv series with id " + req.params.movieID + " not exists!");
                 }
@@ -460,8 +470,6 @@ module.exports = {
                     else{
                         res.status(400).send("The actor '" + req.params.actorName + "' not appearing in the movie.");
                     }
-
-
                 }
             }
         });
@@ -475,11 +483,13 @@ module.exports = {
                 res.sendStatus(500);
             } else {
                 let parsData = JSON.parse(data);
+
                 if (!parsData[req.params.movieID]) {//checks if id not exists in json file.
                     res.status(400).send("movie or tv series with id '" + req.params.movieID + "' not exists!");
                 }
                 else {
-                    console.log(parsData);
+                    console.log(parsData[req.params.movieID].rating);
+                    console.log("The deleted movie is:\n", parsData[req.params.movieID]);
                     delete parsData[req.params.movieID];
                     writeFile(JSON.stringify(parsData, null, 2), () => {
                         res.status(200).send('deleted successfully.');
@@ -487,7 +497,16 @@ module.exports = {
                 }
             }
         });
+    },
+
+    getMovieFromIMDB:function (req,response) {
+        nameToImdb("south park", function(err, res, inf) {
+            console.log(inf.meta.name);
+            response.status(200).send(inf);
+        })
     }
+
+
 
 }
 

@@ -9,8 +9,8 @@ $(document).ready(function(){
     injectToTable();
 
     function injectToTable() {
-        let content = "<div class='grid'>Picture</div><div class='grid'>Name</div><div class='grid'>site</div><div class='grid'>Action</div>"
-        movieData.actors = Object.values(movieData.actors);
+        let content = "<div class='grid'>Picture</div><div class='grid'>Name</div><div class='grid'>site</div><div class='grid'>Action</div>";
+        movieData.actors = Object.values(movieData.actors)
         movieData.actors.forEach(function (element) {
             let name = element.name;
             let picture = element.picture;
@@ -20,7 +20,7 @@ $(document).ready(function(){
                 "<div class='grid'>" + name + "</div>" +
                 "<a class='grid' href='"+ site +"'> " + site + "</a>" +
                 "<div class='grid'>" +
-                "<button class='delete' name='" + element.name + "'>Delete movie</button><br><br>" +
+                "<button class='delete' name='" + element.name + "'>Delete actor</button><br><br>" +
                 "</div>";
         });
         $("#actors_table").html(content);

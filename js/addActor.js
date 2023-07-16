@@ -17,7 +17,10 @@ $(document).ready(function(){
     $("#return_button").click(function(){
         location.href = "/"; //closes the screen and returns to the main screen.
     });
-
+    let picElement = $('#picture');
+    picElement.change(function () {
+        $('#actorPicture').attr("src", picElement.val());
+    });
     function validation() {
         let id = movieId;
         let name = $('#name').val();
@@ -94,6 +97,7 @@ $(document).ready(function(){
             },
         });
     }
+
 
     function isValidHttpUrl(string) {
         let url;

@@ -8,37 +8,50 @@
     <script src="js/index.js" type="text/javascript"></script>
     <link href="css/index.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script></head>
+</head>
+
 <body>
+<div class="navigation_bar">
+    <ul class="menu-bar">
+        <img src="imag/moviePic.jpg" height="60" width="100">
+        <li id="home">Home</li>
+        <li id="search_movie_and_tv">Search movie & TV Shows</li>
+        <li id="add_new_movie">Add a new movie & TV Shows</li>
+        <li >Contact us</li>
+        <img src="imag/moviePic.jpg" height="60" width="100">
+    </ul>
+</div>
 
 <div class="title">movie list</div>
 
-<h3  id="content">add movie or tv series</h3>
-<button id="add_movie1">add movie</button>
+<!--<h3  id="content">add movie or tv series</h3>-->
+<!--<button id="add_movie1">add movie</button>-->
 
-<div class="parameters">
-    id: <input type="text" id="id" > <br>
-    name: <input type="text" id="name"> <br>
-    picture: <input type="text" id="picture"> <br>
-    director: <input type="text" id="director"> <br>
-    date: <input type="date" id="date"> <br>
-    rating: <input type="number" step="1" placeholder="1 - 5" min="1" max="5" id="rating"> <br>
-    <form id="type">
-        Type:<br>
-        <input type="radio" name="isSeries" checked="true" value="movie">    Movie<br>
-        <input type="radio" name="isSeries" value="series">  Series<br>
-    </form>
-    <div hidden id="series">Series details: <input type="text" id="series_details" hid> <br></div>
-    <button id="submit_button">submit</button>
-</div>
-<br><br>
+<!--<div class="parameters">-->
+<!--    id: <input type="text" id="id" placeholder="example: abc1"> <br>-->
+<!--    name: <input type="text" id="name" placeholder="example: the god father 2"> <br>-->
+<!--    picture: <input type="text" id="picture"> <br>-->
+<!--    director: <input type="text" id="director" placeholder="example: Quentin Tarantino"> <br>-->
+<!--    date: <input type="date" id="date"> <br>-->
+<!--    rating: <input type="number" step="1" placeholder="1 - 5" min="1" max="5" id="rating"> <br>-->
+<!--    <form id="type">-->
+<!--        Type:<br>-->
+<!--        <input type="radio" name="isSeries" checked="true" value="movie">    Movie<br>-->
+<!--        <input type="radio" name="isSeries" value="series">  Series<br>-->
+<!--    </form>-->
+<!--    <div hidden id="series">Series details (number episode in each season separated with one space):<br><input type="text" id="series_details" placeholder="example: 12 3 22" hid> <br></div>-->
+<!--    <button id="submit_button">submit</button>-->
+<!--</div>-->
+<!--<br><br>-->
 
 
 <table class="grid-container" id="movies_table"></table>
 
 
 <br><br>
-<h3 id="content2">add movie or tv series</h3>
-<button id="add_movie2">add movie</button>
+<!--<h3 id="content2">add movie or tv series</h3>-->
+<!--<button id="add_movie2">add movie</button>-->
+<div class="loader"></div>
 
 </body>
-</html>
+</html>`

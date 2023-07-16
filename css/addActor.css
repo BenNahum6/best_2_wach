@@ -17,3 +17,8 @@ button:hover{
     margin-left: 91%;
     border-radius: 20px;
 }
+
+#actorPicture{
+    margin-left: 5%;
+    width: 150px;
+}
